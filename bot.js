@@ -2,7 +2,6 @@ const tgApi = require('node-telegram-bot-api');
 require('dotenv').config();
 const fs = require('fs');
 const emailjs = require('@emailjs/nodejs');
-const { error } = require('console');
 
 emailjs.init(process.env.PUBLIC_KEY)
 
