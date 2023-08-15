@@ -40,6 +40,23 @@ const parseMode = {
     parse_mode: 'HTML'
 }
 
+//// gpt 
+
+// Handle errors and restart polling on conflict error
+bot.on('polling_error', (error) => {
+    if (error.code === 'ETELEGRAM' && error.response && error.response.statusCode === 409) {
+      console.error('Polling conflict error. Restarting polling...');
+      setTimeout(() => {
+        bot.stopPolling();
+        bot.startPolling();
+      }, 1000); // Wait 1 second before restarting polling
+    } else {
+      console.error('Polling error:', error);
+    }
+  });
+
+///
+
 const start = () => {
 
     bot.on('message', async(msg) => {
