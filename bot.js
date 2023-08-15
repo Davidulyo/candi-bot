@@ -1,3 +1,4 @@
+process.env["NTBA_FIX_319"] = 1;
 const tgApi = require('node-telegram-bot-api');
 require('dotenv').config();
 const fs = require('fs');
@@ -43,19 +44,19 @@ const parseMode = {
 //// gpt 
 
 // Handle errors and restart polling on conflict error
-bot.on('polling_error', (error) => {
-    if (error.code === 'ETELEGRAM' && error.response && error.response.statusCode === 409) {
-      console.error('Polling conflict error. Restarting polling...');
-      setTimeout(() => {
-        bot.stopPolling();
-        bot.startPolling();
-      }, 1000); // Wait 1 second before restarting polling
-    } else {
-      console.error('Polling error:', error);
-    }
-  });
+// bot.on('polling_error', (error) => {
+//     if (error.code === 'ETELEGRAM' && error.response && error.response.statusCode === 409) {
+//       console.error('Polling conflict error. Restarting polling...');
+//       setTimeout(() => {
+//         bot.stopPolling();
+//         bot.startPolling();
+//       }, 1000); // Wait 1 second before restarting polling
+//     } else {
+//       console.error('Polling error:', error);
+//     }
+//   });
 
-///
+// ///
 
 const start = () => {
 
